@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Beelab\TagBundle\Tag\TaggableInterface;
+use Beelab\TagBundle\Tag\TagInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
  */
-class Document
+class Document implements TaggableInterface
 {
     /**
      * @ORM\Id()
@@ -54,6 +57,25 @@ class Document
      */
     private $active = true;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\ManyToMany(targetEntity="Tag")
+     */
+
+    private $tags;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="Document")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -76,7 +98,7 @@ class Document
         return $this->description;
     }
 
-    public function seDescription(?string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -127,6 +149,45 @@ class Document
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function addTag(TagInterface $tag): void
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+    }
+
+    public function removeTag(TagInterface $tag): void
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    public function hasTag(TagInterface $tag): bool
+    {
+        return $this->tags->contains($tag);
+    }
+
+    public function getTags(): iterable
+    {
+        return $this->tags;
+    }
+
+    public function getTagNames(): array
+    {
+        return empty($this->tagsText) ? [] : \array_map('trim', explode(',', $this->tagsText));
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
