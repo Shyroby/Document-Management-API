@@ -2,11 +2,12 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Tag;
 use App\Entity\Category;
 use App\Entity\Document;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use App\Entity\Tag;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class AppFixtures extends Fixture
 {
@@ -26,22 +27,23 @@ class AppFixtures extends Fixture
             /**
              * Create a fake list of Document
              */
-            for ($b = 0; $b < 5; $b++){
+
                 $document = new Document();
-                $document->setTitle('Document' .$b);
+                $document->setTitle('Document' .$a);
                 $document->setActive(true);
+                $document->setPath("/to/my/folder/");
+                $document->setUpdated(new \DateTime("now"));
                 $document->setDescription('Lorem ipsum dolor sit amet');
                 
                 /**
                  * Create a fake list of Tag
                  */
 
-                for($c = 0; $c < 3; $c++){
                     $tag = new Tag();
-                    $tag->setName('tag' .$b);
-                }
+                    $tag->setName('tag' .$a);
+            
                 $document->addTag($tag);
-            }
+            
             $category->addDocument($document);
 
 

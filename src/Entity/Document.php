@@ -36,12 +36,7 @@ class Document implements TaggableInterface
     /**
      * @ORM\Column(type="datetime")
      */
-    private $uploaded_at;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $modified_at;
+    private $updated;
 
     /**
      * @var string
@@ -76,14 +71,6 @@ class Document implements TaggableInterface
         $this->tags = new ArrayCollection();
     }
 
-    public function updatedTimestamps(): void
-    {
-        $dateTimeNow = new DateTime('now');
-        $this->setModifiedAt($dateTimeNow);
-        if ($this->getUploadedAt() === null) {
-            $this->setUploadedAt($dateTimeNow);
-        }
-    }
 
     public function getId(): ?int
     {
@@ -114,29 +101,17 @@ class Document implements TaggableInterface
         return $this;
     }
 
-    public function getUploadedAt(): ?\DateTimeInterface
+    public function getUpdated(): ?\DateTimeInterface
     {
         return $this->uploaded_at;
     }
 
-    public function setUploadedAt(\DateTimeInterface $uploaded_at): self
+    public function setUpdated()
     {
-        $this->uploaded_at =
+        $this->updated = new \DateTime("now");
 
-        return $this;
     }
 
-    public function getModifiedAt(): ?\DateTimeInterface
-    {
-        return $this->modified_at;
-    }
-
-    public function setModifiedAt(?\DateTimeInterface $modified_at): self
-    {
-        $this->modified_at = $modified_at;
-
-        return $this;
-    }
 
     public function getPath(): ?string
     {
