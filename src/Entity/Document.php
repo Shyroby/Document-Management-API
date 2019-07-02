@@ -39,7 +39,7 @@ class Document implements TaggableInterface
     private $uploaded_at;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $modified_at;
 
@@ -60,13 +60,13 @@ class Document implements TaggableInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\ManyToMany(targetEntity="Tag")
+     * @ORM\ManyToMany(targetEntity="Tag", cascade="persist")
      */
 
     private $tags;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="Document")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="Document", cascade="persist")
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
@@ -74,6 +74,15 @@ class Document implements TaggableInterface
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+    }
+
+    public function updatedTimestamps(): void
+    {
+        $dateTimeNow = new DateTime('now');
+        $this->setModifiedAt($dateTimeNow);
+        if ($this->getUploadedAt() === null) {
+            $this->setUploadedAt($dateTimeNow);
+        }
     }
 
     public function getId(): ?int
@@ -112,7 +121,7 @@ class Document implements TaggableInterface
 
     public function setUploadedAt(\DateTimeInterface $uploaded_at): self
     {
-        $this->uploaded_at = $uploaded_at;
+        $this->uploaded_at =
 
         return $this;
     }

@@ -29,7 +29,7 @@ class Category
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Document", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Document", mappedBy="category", cascade="persist")
      */
     private $Document;
 
