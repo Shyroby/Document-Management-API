@@ -4,8 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5e3343ecc25f5d032dc8eff32f2786b",
+    "content-hash": "9b0eaa6a717e1c8df346e8918e5c154c",
     "packages": [
+        {
+            "name": "beelab/tag-bundle",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bee-Lab/BeelabTagBundle.git",
+                "reference": "1dea4cf1ab78ee883729dea39fd0531a2459fac9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bee-Lab/BeelabTagBundle/zipball/1dea4cf1ab78ee883729dea39fd0531a2459fac9",
+                "reference": "1dea4cf1ab78ee883729dea39fd0531a2459fac9",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": "^2.6",
+                "php": "^7.1",
+                "symfony/config": "^3.4 || ^4.0",
+                "symfony/dependency-injection": "^3.4 || ^4.0",
+                "symfony/form": "^3.4 || ^4.0",
+                "symfony/http-kernel": "^3.4 || ^4.0",
+                "symfony/routing": "^3.4 || ^4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0 || ^8.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Beelab\\TagBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Massimiliano Arione",
+                    "email": "massimiliano.arione@bee-lab.net"
+                }
+            ],
+            "description": "Provide tags for Doctrine entities in Symfony",
+            "homepage": "https://github.com/bee-lab/",
+            "keywords": [
+                "symfony",
+                "tag",
+                "tags"
+            ],
+            "time": "2019-04-28T08:48:13+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.6.1",
@@ -1204,88 +1260,6 @@
                 "reflection"
             ],
             "time": "2018-06-14T14:45:07+00:00"
-        },
-        {
-            "name": "fpn/doctrine-extensions-taggable",
-            "version": "v0.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FabienPennequin/DoctrineExtensions-Taggable.git",
-                "reference": "ee7245fc7c3012ea1b1ed932f62ca258b39d8bea"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FabienPennequin/DoctrineExtensions-Taggable/zipball/ee7245fc7c3012ea1b1ed932f62ca258b39d8bea",
-                "reference": "ee7245fc7c3012ea1b1ed932f62ca258b39d8bea",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/orm": ">=2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "DoctrineExtensions": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Pennequin",
-                    "email": "fabien@pennequin.me"
-                }
-            ],
-            "description": "Tag system using Doctrine ORM",
-            "keywords": [
-                "Taggable",
-                "tag"
-            ],
-            "time": "2012-09-20T19:58:42+00:00"
-        },
-        {
-            "name": "fpn/tag-bundle",
-            "version": "v0.9.0",
-            "target-dir": "FPN/TagBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FabienPennequin/FPNTagBundle.git",
-                "reference": "2cc70ca1405abec9410352ab7243c809432ceff5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FabienPennequin/FPNTagBundle/zipball/2cc70ca1405abec9410352ab7243c809432ceff5",
-                "reference": "2cc70ca1405abec9410352ab7243c809432ceff5",
-                "shasum": ""
-            },
-            "require": {
-                "fpn/doctrine-extensions-taggable": "v0.9.0",
-                "symfony/framework-bundle": ">=2.0"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-0": {
-                    "FPN\\TagBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Pennequin",
-                    "email": "fabien@pennequin.me"
-                }
-            ],
-            "description": "FPN Tag Bundle",
-            "keywords": [
-                "tag",
-                "tagging"
-            ],
-            "time": "2014-05-07T06:49:53+00:00"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -5023,6 +4997,130 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "doctrine/data-fixtures",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/data-fixtures.git",
+                "reference": "3a1e2c3c600e615a2dffe56d4ca0875cc5233e0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/3a1e2c3c600e615a2dffe56d4ca0875cc5233e0a",
+                "reference": "3a1e2c3c600e615a2dffe56d4ca0875cc5233e0a",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.2",
+                "php": "^7.1"
+            },
+            "conflict": {
+                "doctrine/phpcr-odm": "<1.3.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^2.5.4",
+                "doctrine/orm": "^2.5.4",
+                "phpunit/phpunit": "^7.0"
+            },
+            "suggest": {
+                "alcaeus/mongo-php-adapter": "For using MongoDB ODM with PHP 7",
+                "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
+                "doctrine/orm": "For loading ORM fixtures",
+                "doctrine/phpcr-odm": "For loading PHPCR ODM fixtures"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\DataFixtures\\": "lib/Doctrine/Common/DataFixtures"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Data Fixtures for all Doctrine Object Managers",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "database"
+            ],
+            "time": "2018-03-20T09:06:36+00:00"
+        },
+        {
+            "name": "doctrine/doctrine-fixtures-bundle",
+            "version": "3.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
+                "reference": "90e4a4f968b2dae40e290a6ee516957af043f16c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/90e4a4f968b2dae40e290a6ee516957af043f16c",
+                "reference": "90e4a4f968b2dae40e290a6ee516957af043f16c",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/data-fixtures": "^1.3",
+                "doctrine/doctrine-bundle": "^1.6",
+                "doctrine/orm": "^2.6.0",
+                "php": "^7.1",
+                "symfony/doctrine-bridge": "~3.4|^4.1",
+                "symfony/framework-bundle": "^3.4|^4.1"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^6.0",
+                "phpunit/phpunit": "^7.4",
+                "symfony/phpunit-bridge": "^4.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Bundle\\FixturesBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Doctrine Project",
+                    "homepage": "http://www.doctrine-project.org"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony DoctrineFixturesBundle",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "Fixture",
+                "persistence"
+            ],
+            "time": "2019-06-12T12:03:37+00:00"
+        },
         {
             "name": "nikic/php-parser",
             "version": "v4.2.2",

@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Beelab\TagBundle\Tag\TaggableInterface;
+use Beelab\TagBundle\Tag\TagInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
  */
-class Document
+class Document implements TaggableInterface
 {
     /**
      * @ORM\Id()
@@ -36,7 +39,7 @@ class Document
     private $uploaded_at;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $modified_at;
 
@@ -53,6 +56,34 @@ class Document
      * @ORM\Column(type="boolean")
      */
     private $active = true;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\ManyToMany(targetEntity="Tag", cascade="persist")
+     */
+
+    private $tags;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="Document", cascade="persist")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
+
+    public function updatedTimestamps(): void
+    {
+        $dateTimeNow = new DateTime('now');
+        $this->setModifiedAt($dateTimeNow);
+        if ($this->getUploadedAt() === null) {
+            $this->setUploadedAt($dateTimeNow);
+        }
+    }
 
     public function getId(): ?int
     {
@@ -76,7 +107,7 @@ class Document
         return $this->description;
     }
 
-    public function seDescription(?string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -90,7 +121,7 @@ class Document
 
     public function setUploadedAt(\DateTimeInterface $uploaded_at): self
     {
-        $this->uploaded_at = $uploaded_at;
+        $this->uploaded_at =
 
         return $this;
     }
@@ -127,6 +158,45 @@ class Document
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function addTag(TagInterface $tag): void
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+    }
+
+    public function removeTag(TagInterface $tag): void
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    public function hasTag(TagInterface $tag): bool
+    {
+        return $this->tags->contains($tag);
+    }
+
+    public function getTags(): iterable
+    {
+        return $this->tags;
+    }
+
+    public function getTagNames(): array
+    {
+        return empty($this->tagsText) ? [] : \array_map('trim', explode(',', $this->tagsText));
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
