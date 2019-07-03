@@ -2,44 +2,34 @@
 
 namespace App\Controller;
 
-use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use FOS\RestBundle\Controller\ControllerTrait;
+use App\Entity\Document;
+use FOS\RestBundle\View\View;
 use Swagger\Annotations as SWG;
+use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 
-class DocumentController extends AbstractController
-{
-
-    use ControllerTrait;
-
-    private $repository;
-
-    function __construct()
-    {
-
-        
-    };
-
-
+class DocumentController extends AbstractFOSRestController
+{  
 
     /**
-     * @return FOS\RestBundle\View\View
+     * 
      * @Rest\Get("/document", name="get_document")
      * @SWG\Get(
      *      tags={"Document"},
      *      summary="Gets the all documents",
      *      consumes={"application/json"},
-     *      produces={"application/json"}
+     *      produces={"application/json"},
      *      @SWG\Response(response=200, description="Return when succcessful"),
-     *      @SWG\Response(response=404, description="Returned when document is not found").
+     *      @SWG\Response(response=404, description="Returned when document is not found")
      * )
      */
     public function getDocument()
     {
-        $data = ["message" => "Welcome"];
-        $view = $this->view($data, Response::HTTP_OK);
-
-        return $view;
+        $documents = $this->getDoctrine()
+            ->getRepository(Document::class)
+            ->findAll();
+        
+            return View::create($documents, Response::HTTP_ACCEPTED);
     }
 }
