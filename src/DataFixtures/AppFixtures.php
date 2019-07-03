@@ -28,19 +28,19 @@ class AppFixtures extends Fixture
              * Create a fake list of Document
              */
 
-                $document = new Document();
-                $document->setTitle('Document' .$a);
-                $document->setActive(true);
-                $document->setPath("/to/my/folder/");
-                $document->setUpdated(new \DateTime("now"));
-                $document->setDescription('Lorem ipsum dolor sit amet');
+                    $document = new Document();
+                    $document->setTitle('Document' .$a);
+                    $document->setActive(true);
+                    $document->setPath("/to/my/folder/");
+                    $document->setUpdated(new \DateTime("now"));
+                    $document->setDescription('Lorem ipsum dolor sit amet');
                 
                 /**
                  * Create a fake list of Tag
                  */
 
-                    $tag = new Tag();
-                    $tag->setName('tag' .$a);
+                $tag = new Tag();
+                $tag->setName('tag' .$a);
             
                 $document->addTag($tag);
             
